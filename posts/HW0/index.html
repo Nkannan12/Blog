@@ -192,6 +192,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+<section id="introduction-and-getting-started" class="level1">
+<h1>Introduction and Getting Started</h1>
 <p>Today, we’re going to use python to construct an interesting data visualization of the <em>Palmer Penguins</em> dataset. You can read the data into python by running the following code:</p>
 <div id="cell-2" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -204,7 +206,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="13">
+</section>
+<section id="analyzing-the-dataset" class="level1">
+<h1>Analyzing the Dataset</h1>
+<p>Now let’s take a look at the dataset. To get an idea of what it looks like, let’s inspect the first five rows of our penguins DataFrame, using the .head() function as seen below.</p>
+<div id="cell-6" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>penguins.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
@@ -340,9 +346,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Let’s look at the first five entries in the dataset. As we can see, the data holds recorded measurements of Culmen length and depth, flipper length, and body mass, with indentifiers such as the study name, sample number, species, region, island, stage, individual id, clutch completion, egg date, and sex. In all, there 17 columns for each entry.</p>
+<p>As we can see, the data holds recorded measurements of Culmen length and depth, flipper length, and body mass, with indentifiers such as the study name, sample number, species, region, island, stage, individual id, clutch completion, egg date, and sex. In all, there 17 columns for each entry.</p>
+</section>
+<section id="visualizing-the-correlations-in-the-dataset" class="level1">
+<h1>Visualizing the Correlations in the Dataset</h1>
 <p>Let’s try and find a correlation between measurements. Take flipper length and body mass. An interesting hypothesis would be that as flipper length increases, so does body mass. Let’s visualize this using a scatterplot. We’ll use seaborn and matplotlib along with the “penguins” dataframe we made earlier. The code is as follows:</p>
-<div id="cell-8" class="cell" data-execution_count="14">
+<div id="cell-9" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>penguins, x<span class="op">=</span><span class="st">"Flipper Length (mm)"</span>, y<span class="op">=</span><span class="st">"Body Mass (g)"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Penguin Flipper Length Affect On Body Mass"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.show</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -354,8 +363,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>We take data from our penguins DataFrame, specifically from the “Flipper Length (mm)” and “Body Mass (g)” columns. We use seaborn as a shortcut to using matplotlib function, like scatterplot as above. Pass penguins, “Flipper Length (mm),” and “Body Mass (g)” as arguments to sns.scatterplot. Choose a preferred title, and plot using plt.show. As a further modification, we can add a line of best fit by using sns.regplot, which autofits a line of regression. It’s produced as follows:</p>
-<div id="cell-10" class="cell" data-execution_count="15">
+<p>We take data from our penguins DataFrame, specifically from the “Flipper Length (mm)” and “Body Mass (g)” columns. We use seaborn as a shortcut to using matplotlib functions, like scatterplot as above. Pass penguins, “Flipper Length (mm),” and “Body Mass (g)” as arguments to sns.scatterplot. Choose a preferred title, and plot using plt.show. As a further modification, we can add a line of best fit by using sns.regplot, which autofits a line of regression. It’s produced as follows:</p>
+<div id="cell-11" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sns.regplot(data<span class="op">=</span>penguins, x<span class="op">=</span><span class="st">"Flipper Length (mm)"</span>, y<span class="op">=</span><span class="st">"Body Mass (g)"</span>, scatter_kws<span class="op">=</span>{<span class="st">"color"</span>:<span class="st">"blue"</span>}, line_kws<span class="op">=</span>{<span class="st">"color"</span>:<span class="st">"red"</span>})</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Penguin Flipper Length Affect On Body Mass"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.show</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -367,9 +376,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Here, scatter_kws and line_kws are both dictionaries that allow us to change the colors of the datapoints and line of best fit.</p>
+<p>Here, scatter_kws and line_kws are both dictionaries that allow us to change the colors of the datapoints and line of best fit. Body mass and flipper length seem to be directly proportional. This makes sense, since the larger the flipper, the heavier it is, thus increasing body mass.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
