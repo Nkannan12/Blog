@@ -1621,58 +1621,20 @@ def preprocess(images_arr):
 <ul>
 <li>Home page: Links to the main page of the application. The url_for(‘main’) function dynamically generates the URL to the view function named main.</li>
 <li>Generate a Recipe: Links to the page where users can generate recipes. The url_for(‘generate’) generates the URL to the generate view function.</li>
-<li>Recipe List: Links to a page displaying a list of recipes. The url_for(‘receipe_page’) (note the typo in ‘recipe’) generates the URL to the receipe_page view function. !</li>
+<li>Recipe List: Links to a page displaying a list of recipes. The url_for(‘receipe_page’) (note the typo in ‘recipe’) generates the URL to the receipe_page view function.</li>
 </ul>
-<div id="cell-41" class="cell" data-vscode="{&quot;languageId&quot;:&quot;html&quot;}">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!</span>doctype html<span class="op">&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>link rel<span class="op">=</span><span class="st">"stylesheet"</span> href<span class="op">=</span><span class="st">"</span><span class="sc">{{</span><span class="st"> url_for('static', filename='style.css') </span><span class="sc">}}</span><span class="st">"</span><span class="op">&gt;</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>title<span class="op">&gt;</span>{<span class="op">%</span> block title <span class="op">%</span>}{<span class="op">%</span> endblock <span class="op">%</span>} <span class="op">-</span> Recipe Generator<span class="op">&lt;/</span>title<span class="op">&gt;</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>nav<span class="op">&gt;</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>h1<span class="op">&gt;</span>Recipe Generator<span class="op">&lt;/</span>h1<span class="op">&gt;</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;!--</span> <span class="op">&lt;</span>b<span class="op">&gt;</span>Navigation:<span class="op">&lt;/</span>b<span class="op">&gt;</span> <span class="op">--&gt;</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>ul<span class="op">&gt;</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>li<span class="op">&gt;&lt;</span>a href<span class="op">=</span><span class="st">"</span><span class="sc">{{</span><span class="st"> url_for('main') </span><span class="sc">}}</span><span class="st">"</span><span class="op">&gt;</span>Home page<span class="op">&lt;/</span>a<span class="op">&gt;&lt;/</span>li<span class="op">&gt;</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>li<span class="op">&gt;&lt;</span>a href<span class="op">=</span><span class="st">"</span><span class="sc">{{</span><span class="st"> url_for('generate')</span><span class="sc">}}</span><span class="st">"</span><span class="op">&gt;</span>Generate a Recipe<span class="op">&lt;/</span>a<span class="op">&gt;&lt;/</span>li<span class="op">&gt;</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>      <span class="op">&lt;</span>li<span class="op">&gt;&lt;</span>a href<span class="op">=</span><span class="st">"</span><span class="sc">{{</span><span class="st"> url_for('receipe_page')</span><span class="sc">}}</span><span class="st">"</span><span class="op">&gt;</span>Recipe List<span class="op">&lt;/</span>a<span class="op">&gt;&lt;/</span>li<span class="op">&gt;</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;!--</span> <span class="op">&lt;</span>li<span class="op">&gt;&lt;</span>a href<span class="op">=</span><span class="st">"</span><span class="sc">{{</span><span class="st"> url_for('recipe_results')</span><span class="sc">}}</span><span class="st">"</span><span class="op">&gt;</span>Recipes<span class="op">&lt;/</span>a<span class="op">&gt;&lt;/</span>li<span class="op">&gt;</span> <span class="op">--&gt;</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;/</span>ul<span class="op">&gt;</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>nav<span class="op">&gt;</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>section <span class="kw">class</span><span class="op">=</span><span class="st">"content"</span><span class="op">&gt;</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>header<span class="op">&gt;</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    {<span class="op">%</span> block header <span class="op">%</span>}{<span class="op">%</span> endblock <span class="op">%</span>}</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;/</span>header<span class="op">&gt;</span></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  {<span class="op">%</span> block content <span class="op">%</span>}{<span class="op">%</span> endblock <span class="op">%</span>}</span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>section<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-41-1-image.png" class="img-fluid figure-img"></p>
+<figcaption>image.png</figcaption>
+</figure>
 </div>
 <p>Below the main.html sets up the structure of the mian page. we used img src to present three images and imporve the appreace of our model but most importantly we added a button called “Generate a Receipe”. The style of the button is added at style.css. The picture below depics how our home page looks like. As you can see you can navigate to the generate a recipe page both through the button in the middle or through the navigation bar. Below the image we will dive into how we formulated the generate function.</p>
-<div id="cell-43" class="cell" data-vscode="{&quot;languageId&quot;:&quot;html&quot;}">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a> {<span class="op">%</span> extends <span class="st">'base.html'</span> <span class="op">%</span>}</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>{<span class="op">%</span> block header <span class="op">%</span>}</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>h1<span class="op">&gt;</span>{<span class="op">%</span> block title <span class="op">%</span>} Eat Your Veggies{<span class="op">%</span> endblock <span class="op">%</span>}<span class="op">&lt;/</span>h1<span class="op">&gt;</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>{<span class="op">%</span> endblock <span class="op">%</span>}</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>{<span class="op">%</span> block content <span class="op">%</span>}</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"centered-container"</span><span class="op">&gt;</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>h2<span class="op">&gt;</span>Get a List of Receipes Tailored For You <span class="kw">and</span> Your Ingredients<span class="op">&lt;/</span>h2<span class="op">&gt;</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>p<span class="op">&gt;</span> Welcome to our recipe generator<span class="op">!</span> Have leftover vegetables? Not sure what to do <span class="cf">with</span> them? Do <span class="kw">not</span> fret we got you covered<span class="op">!</span> It<span class="st">'s simple: upload photos of your available vegetables and other ingredients, select your preferred cuisine type, and voilà! We'</span>ll provide you <span class="cf">with</span> a curated <span class="bu">list</span> of recipes tailored just <span class="cf">for</span> you. Let<span class="st">'s make cooking at home easy, fun, and absolutely delightful. Start your culinary adventure with us today!&lt;/p&gt;</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="er">  &lt;p&gt; Simply click on the generate button below or explore our recipes in the tab above&lt;/p&gt;</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>a href<span class="op">=</span><span class="st">"/generate"</span> <span class="kw">class</span><span class="op">=</span><span class="st">"myButton"</span><span class="op">&gt;</span>Generate a Recipe<span class="op">&lt;/</span>a<span class="op">&gt;</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>p<span class="op">&gt;</span>The best seasoning <span class="kw">is</span> hunger<span class="op">!&lt;/</span>p<span class="op">&gt;</span></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"image-container"</span><span class="op">&gt;</span></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>img src<span class="op">=</span><span class="st">"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-IZ1xJCPpfvhKZeLbKinyBX6Zvilg_RULXA&amp;usqp=CAU.jpg"</span> alt<span class="op">=</span><span class="st">"Image1"</span><span class="op">&gt;</span></span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>img src<span class="op">=</span><span class="st">"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqE81NwU51B4OED72TNNtVQHk1QJN2GZNZSw&amp;usqp=CAU.jpg"</span> alt<span class="op">=</span><span class="st">"Image 2"</span><span class="op">&gt;</span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>img src<span class="op">=</span><span class="st">"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq_n1J37kfrfyPyt7lLnjGB_ZaAFVa95Om_A&amp;usqp=CAU.jpg"</span> alt<span class="op">=</span><span class="st">"Image 3"</span><span class="op">&gt;</span></span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>{<span class="op">%</span> endblock <span class="op">%</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-43-1-image.png" class="img-fluid figure-img"></p>
+<figcaption>image.png</figcaption>
+</figure>
 </div>
 </section>
 </section>
@@ -1688,77 +1650,77 @@ def preprocess(images_arr):
 <p>The code converts the image to a tensor, and then uses the model to predict the ingredient class.Each predicted ingredient is then added to a list. After processing all images, it redirects the user to the recipe_results route, passing along the selected cuisine and the list of predicted ingredients. In case there is an error occuring during the processing of the POST request the error handling is included to ensure it catches the exception and re-renders the generate2.html template with an error indicator.</p>
 <p>The end of the functions redirects the user to a new page (recipe_results) where recipes based on the identified ingredients and selected cuisine are shown. This is done by passing the cuisine type and the list of identified ingredients as arguments to the url_for function, which generates the appropriate URL for the redirect.</p>
 <div id="cell-46" class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">'/'</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">'main_better.html'</span>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">'/generate/'</span>, methods<span class="op">=</span>[<span class="st">'POST'</span>, <span class="st">'GET'</span>])</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate():</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Handle the generation of ingredient predictions based on uploaded images.</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">    If the request method is GET, renders the 'generate2.html' template.</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">    If the request method is POST, processes the uploaded images, predicts ingredients,</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">    and redirects to the 'recipe_results' function.</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">        Response: Rendered template or redirection to 'recipe_results' function.</span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> request.method <span class="op">==</span> <span class="st">'GET'</span>:</span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> render_template(<span class="st">'generate2.html'</span>)</span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>            cuisine <span class="op">=</span> request.form.get(<span class="st">'cuisine'</span>)</span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>            classes <span class="op">=</span> [<span class="st">'beans'</span>, <span class="st">'bell_pepper'</span>, <span class="st">'potato'</span>, <span class="st">'tomato'</span>]</span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>            model <span class="op">=</span> resnet18(<span class="dv">4</span>, <span class="dv">3</span>) <span class="co"># model trained on small dataset</span></span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>            model.load_state_dict(torch.load(<span class="st">'model/model_logs/Ingredients8.pth'</span>, map_location<span class="op">=</span><span class="st">'cpu'</span>))</span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>            <span class="co">#set to eval for testing</span></span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>            model.<span class="bu">eval</span>()</span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>            files <span class="op">=</span> request.files.getlist(<span class="st">'images[]'</span>)</span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>            transform <span class="op">=</span> transforms.Compose([</span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>                transforms.RandomHorizontalFlip(),</span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>                transforms.RandomResizedCrop(<span class="dv">32</span>),</span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>                transforms.ToTensor(),</span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>                transforms.Normalize((<span class="fl">0.38046584</span>, <span class="fl">0.10854615</span>, <span class="op">-</span><span class="fl">0.13485776</span>), (<span class="fl">0.5249659</span>, <span class="fl">0.59474176</span>, <span class="fl">0.6634378</span>))</span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>            ])</span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>            ingredients <span class="op">=</span> []</span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>            images <span class="op">=</span> []</span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> files:</span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>                <span class="cf">try</span>:</span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>                    image <span class="op">=</span> Image.<span class="bu">open</span>(<span class="bu">file</span>)</span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> image <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">if</span> image.mode <span class="op">!=</span> <span class="st">'RGB'</span>:</span>
-<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>                            image <span class="op">=</span> image.convert(<span class="st">'RGB'</span>)</span>
-<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># image = image.resize((150,150))</span></span>
-<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>                        image <span class="op">=</span> np.array(image)</span>
-<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>                        images.append(image)</span>
-<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a>                <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="ss">f'Error reading file </span><span class="sc">{</span><span class="bu">file</span><span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>            <span class="co"># allow for the transform to work on pil_image</span></span>
-<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>            pil_images <span class="op">=</span> [Image.fromarray(image) <span class="cf">for</span> image <span class="kw">in</span> images]</span>
-<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>            transformed_images <span class="op">=</span> [transform(image) <span class="cf">for</span> image <span class="kw">in</span> pil_images]</span>
-<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>            images <span class="op">=</span> torch.stack(transformed_images)</span>
-<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>            <span class="co"># classify each image</span></span>
-<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> image <span class="kw">in</span> images:</span>
-<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>                <span class="co"># don't track gradient for efficient testing</span></span>
-<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>                <span class="cf">with</span> torch.no_grad():</span>
-<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a>                    outputs <span class="op">=</span> model(image.unsqueeze(<span class="dv">0</span>))</span>
-<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>                    _, pred_class <span class="op">=</span> torch.<span class="bu">max</span>(outputs, <span class="dv">1</span>)</span>
-<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a>                    ingredient <span class="op">=</span> classes[pred_class.item()]</span>
-<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a>                    ingredients.append(ingredient)</span>
-<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a>            <span class="co"># send list of ingredients to recipe_results function</span></span>
-<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> redirect(url_for(<span class="st">'recipe_results'</span>, cuisine<span class="op">=</span>cuisine, ingredients<span class="op">=</span>ingredients))</span>
-<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span>:</span>
-<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> render_template(<span class="st">'generate2.html'</span>, error<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">'/generate/&lt;name&gt;'</span>)</span>
-<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_name(name):</span>
-<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">'generate2.html'</span>, name<span class="op">=</span>name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">'/'</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">'main_better.html'</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">'/generate/'</span>, methods<span class="op">=</span>[<span class="st">'POST'</span>, <span class="st">'GET'</span>])</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate():</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Handle the generation of ingredient predictions based on uploaded images.</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">    If the request method is GET, renders the 'generate2.html' template.</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">    If the request method is POST, processes the uploaded images, predicts ingredients,</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">    and redirects to the 'recipe_results' function.</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">        Response: Rendered template or redirection to 'recipe_results' function.</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> request.method <span class="op">==</span> <span class="st">'GET'</span>:</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> render_template(<span class="st">'generate2.html'</span>)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>            cuisine <span class="op">=</span> request.form.get(<span class="st">'cuisine'</span>)</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>            classes <span class="op">=</span> [<span class="st">'beans'</span>, <span class="st">'bell_pepper'</span>, <span class="st">'potato'</span>, <span class="st">'tomato'</span>]</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>            model <span class="op">=</span> resnet18(<span class="dv">4</span>, <span class="dv">3</span>) <span class="co"># model trained on small dataset</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>            model.load_state_dict(torch.load(<span class="st">'model/model_logs/Ingredients8.pth'</span>, map_location<span class="op">=</span><span class="st">'cpu'</span>))</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>            <span class="co">#set to eval for testing</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>            model.<span class="bu">eval</span>()</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>            files <span class="op">=</span> request.files.getlist(<span class="st">'images[]'</span>)</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>            transform <span class="op">=</span> transforms.Compose([</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>                transforms.RandomHorizontalFlip(),</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>                transforms.RandomResizedCrop(<span class="dv">32</span>),</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>                transforms.ToTensor(),</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>                transforms.Normalize((<span class="fl">0.38046584</span>, <span class="fl">0.10854615</span>, <span class="op">-</span><span class="fl">0.13485776</span>), (<span class="fl">0.5249659</span>, <span class="fl">0.59474176</span>, <span class="fl">0.6634378</span>))</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>            ])</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>            ingredients <span class="op">=</span> []</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>            images <span class="op">=</span> []</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> files:</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>                <span class="cf">try</span>:</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>                    image <span class="op">=</span> Image.<span class="bu">open</span>(<span class="bu">file</span>)</span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> image <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">if</span> image.mode <span class="op">!=</span> <span class="st">'RGB'</span>:</span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>                            image <span class="op">=</span> image.convert(<span class="st">'RGB'</span>)</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># image = image.resize((150,150))</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>                        image <span class="op">=</span> np.array(image)</span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>                        images.append(image)</span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>                <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="ss">f'Error reading file </span><span class="sc">{</span><span class="bu">file</span><span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>            <span class="co"># allow for the transform to work on pil_image</span></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>            pil_images <span class="op">=</span> [Image.fromarray(image) <span class="cf">for</span> image <span class="kw">in</span> images]</span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>            transformed_images <span class="op">=</span> [transform(image) <span class="cf">for</span> image <span class="kw">in</span> pil_images]</span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>            images <span class="op">=</span> torch.stack(transformed_images)</span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>            <span class="co"># classify each image</span></span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> image <span class="kw">in</span> images:</span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>                <span class="co"># don't track gradient for efficient testing</span></span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>                <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>                    outputs <span class="op">=</span> model(image.unsqueeze(<span class="dv">0</span>))</span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>                    _, pred_class <span class="op">=</span> torch.<span class="bu">max</span>(outputs, <span class="dv">1</span>)</span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>                    ingredient <span class="op">=</span> classes[pred_class.item()]</span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>                    ingredients.append(ingredient)</span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>            <span class="co"># send list of ingredients to recipe_results function</span></span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> redirect(url_for(<span class="st">'recipe_results'</span>, cuisine<span class="op">=</span>cuisine, ingredients<span class="op">=</span>ingredients))</span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span>:</span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> render_template(<span class="st">'generate2.html'</span>, error<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">'/generate/&lt;name&gt;'</span>)</span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_name(name):</span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">'generate2.html'</span>, name<span class="op">=</span>name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="the-generate-page-where-user-upload-their-images-and-chose-their-prefred-cuisine" class="level5">
 <h5 class="anchored" data-anchor-id="the-generate-page-where-user-upload-their-images-and-chose-their-prefred-cuisine">The generate page where user upload their images and chose their prefred cuisine!</h5>
@@ -1830,64 +1792,64 @@ def preprocess(images_arr):
 <p>We then convert the recommended_recipes into a list of dictionaries. Each dictionary represents a recipe, and the orient=‘records’ parameter means each row in the DataFrame is converted to a dictionary, with column names as keys.</p>
 <p>Lastly we render the receipe result page.</p>
 <div id="cell-58" class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">'/filter-recipes'</span>, methods<span class="op">=</span>[<span class="st">'POST'</span>])</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filter_recipes():</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Filter recipes based on selected cuisine and ingredients.</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Retrieves the selected cuisine and ingredients from the request form, then generates</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">    recommended recipes using the 'gen_recipe' function. Converts the recommended recipes</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">    into a dictionary format and renders the 'recipe_results.html' template, passing the</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">    recipes data.</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">        Response: Rendered template 'recipe_results.html' with recipes data.</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    cuisine <span class="op">=</span> request.form.get(<span class="st">'cuisine'</span>)</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    ingredients <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    recommended_recipes <span class="op">=</span> gen_recipe(cuisine, ingredients)</span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    recipes_data <span class="op">=</span> recommended_recipes.to_dict(orient<span class="op">=</span><span class="st">'records'</span>)</span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Render the recipe_results.html template, passing the recipes data</span></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">'recipe_results.html'</span>, recipes<span class="op">=</span>recipes_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">'/filter-recipes'</span>, methods<span class="op">=</span>[<span class="st">'POST'</span>])</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filter_recipes():</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Filter recipes based on selected cuisine and ingredients.</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Retrieves the selected cuisine and ingredients from the request form, then generates</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">    recommended recipes using the 'gen_recipe' function. Converts the recommended recipes</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">    into a dictionary format and renders the 'recipe_results.html' template, passing the</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">    recipes data.</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">        Response: Rendered template 'recipe_results.html' with recipes data.</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    cuisine <span class="op">=</span> request.form.get(<span class="st">'cuisine'</span>)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    ingredients <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    recommended_recipes <span class="op">=</span> gen_recipe(cuisine, ingredients)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    recipes_data <span class="op">=</span> recommended_recipes.to_dict(orient<span class="op">=</span><span class="st">'records'</span>)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Render the recipe_results.html template, passing the recipes data</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">'recipe_results.html'</span>, recipes<span class="op">=</span>recipes_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="now-that-we-are-at-the-recipe-results-page-lets-examine-the-recipe_resulst-function" class="level3">
 <h3 class="anchored" data-anchor-id="now-that-we-are-at-the-recipe-results-page-lets-examine-the-recipe_resulst-function">Now that we are at the recipe results page lets examine the recipe_resulst function:</h3>
 <p>When a user accesses the /recipe_results/ URL, the application can respond to both GET and POST requests. For GET requests, it’s expected that the user has passed information through the URL’s query parameters, specifying both a type of cuisine and ingredients they’re interested in. The application checks if both pieces of information are provided; if not, it displays a message asking for both the cuisine and ingredients. If the information is present, it uses a function gen_recipe from earlier to fetch recommended recipes matching the specified criteria, converts this data into a format that can be easily used in the HTML template, and then displays it to the user on the recipe_results.html page. For POST requests, which are not explicitly handled with form data in this code, it simply displays a message encouraging the user to select a cuisine to view recipes, suggesting that the main interaction mode expected is through GET requests</p>
 <div id="cell-60" class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">'/recipe_results/'</span>, methods<span class="op">=</span>[<span class="st">'GET'</span>, <span class="st">'POST'</span>])</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> recipe_results():</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Display recipe results based on selected cuisine and ingredients.</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">    If the request method is GET, retrieves the selected cuisine and ingredients from the request arguments,</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">    generates recommended recipes using the 'gen_recipe' function, converts the recommended recipes into a</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">    dictionary format, and renders the 'recipe_results.html' template, passing the recipes data. If either</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">    cuisine or ingredients is not provided, displays an error message.</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">    If the request method is not GET, displays a message prompting the user to select a cuisine to view recipes.</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">        Response: Rendered template 'recipe_results.html' with recipes data or an error message.</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> request.method <span class="op">==</span> <span class="st">'GET'</span>:</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># fetch cuisine and ingredients passed form generate</span></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>        cuisine <span class="op">=</span> request.args.get(<span class="st">'cuisine'</span>)</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>        ingredients <span class="op">=</span> request.args.get(<span class="st">'ingredients'</span>)</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cuisine <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> ingredients <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>            message <span class="op">=</span> <span class="st">"Provide both a cuisine and ingredients."</span></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> render_template(<span class="st">'recipe_results.html'</span>, message<span class="op">=</span>message)</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print(cuisine + ' ' + ingredients)</span></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>        recommended_recipes <span class="op">=</span> gen_recipe(cuisine, ingredients)</span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print(recommended_recipes)</span></span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>        recipes_data <span class="op">=</span> recommended_recipes.to_dict(orient<span class="op">=</span><span class="st">'records'</span>)</span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(recipes_data)  <span class="co"># Debugging line to check data</span></span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> render_template(<span class="st">'recipe_results.html'</span>, recipes<span class="op">=</span>recipes_data)</span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>        message <span class="op">=</span> <span class="st">"Please select a cuisine to view recipes."</span></span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> render_template(<span class="st">'recipe_results.html'</span>, message<span class="op">=</span>message)</span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">'/recipe_results/'</span>, methods<span class="op">=</span>[<span class="st">'GET'</span>, <span class="st">'POST'</span>])</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> recipe_results():</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Display recipe results based on selected cuisine and ingredients.</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">    If the request method is GET, retrieves the selected cuisine and ingredients from the request arguments,</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">    generates recommended recipes using the 'gen_recipe' function, converts the recommended recipes into a</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">    dictionary format, and renders the 'recipe_results.html' template, passing the recipes data. If either</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">    cuisine or ingredients is not provided, displays an error message.</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">    If the request method is not GET, displays a message prompting the user to select a cuisine to view recipes.</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">        Response: Rendered template 'recipe_results.html' with recipes data or an error message.</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> request.method <span class="op">==</span> <span class="st">'GET'</span>:</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># fetch cuisine and ingredients passed form generate</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>        cuisine <span class="op">=</span> request.args.get(<span class="st">'cuisine'</span>)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>        ingredients <span class="op">=</span> request.args.get(<span class="st">'ingredients'</span>)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cuisine <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> ingredients <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>            message <span class="op">=</span> <span class="st">"Provide both a cuisine and ingredients."</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> render_template(<span class="st">'recipe_results.html'</span>, message<span class="op">=</span>message)</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print(cuisine + ' ' + ingredients)</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>        recommended_recipes <span class="op">=</span> gen_recipe(cuisine, ingredients)</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print(recommended_recipes)</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>        recipes_data <span class="op">=</span> recommended_recipes.to_dict(orient<span class="op">=</span><span class="st">'records'</span>)</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(recipes_data)  <span class="co"># Debugging line to check data</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> render_template(<span class="st">'recipe_results.html'</span>, recipes<span class="op">=</span>recipes_data)</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>        message <span class="op">=</span> <span class="st">"Please select a cuisine to view recipes."</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> render_template(<span class="st">'recipe_results.html'</span>, message<span class="op">=</span>message)</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The code below is from the receipe_results.html, it dynamically display a list of recipes on a webpage. If recipes are available, each one is presented with its name (as a clickable link to the recipe’s page) and its key ingredients. If no recipes are available, a predefined message is displayed instead.</p>
 </section>
@@ -1902,7 +1864,7 @@ def preprocess(images_arr):
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-22-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-20-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
