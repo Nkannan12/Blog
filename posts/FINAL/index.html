@@ -1352,73 +1352,74 @@ def download_image(download_path, url, file_name):
 <span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>              <span class="bu">print</span>(<span class="ss">f'Error reading image </span><span class="sc">{</span>image_path<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> np.array(images), np.array(labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This function iterates through each file and adds the images to python using PIL, then appends each image to a list called images, as well as its label (corresponding to the stated mapping) to a list called labels. At the end, a numpy array version of both these lists is returned. Using these, we can then create a pytorch dataset: ```python class Ingredients(Dataset): “““Class creating pytorch dataset from images and their labels.</p>
-<pre><code>Args:
-    images (list): List of images.
-    labels (list): List of corresponding labels.
-    transform (callable, optional): Augmentation of the images.
-
-Attributes:
-    images (list): List of images.
-    labels (list): List of corresponding labels.
-    transform (callable, optional): Augmentation of the images.
-
-Methods:
-    __len__(self): Returns the number of samples in the dataset.
-    __getitem__(self, idx): Retrieves the item at the given index.
-
-"""
-def __init__(self, images, labels, transform=None):
-    """Initializes the Ingredients dataset.
-
-    Args:
-        images (list): List of images.
-        labels (list): List of corresponding labels.
-        transform (callable, optional): Augmentation of the images.
-    """
-    self.images = images
-    self.labels = labels
-    self.transform = transform
-
-def __len__(self):
-    """Returns the number of samples in the dataset.
-
-    Returns:
-        int: Number of samples in the dataset.
-    """
-    return len(self.images)
-
-def __getitem__(self, idx):
-    """Retrieves the item at the given index.
-
-    Args:
-        idx (int): Index of the item to retrieve.
-
-    Returns:
-        tuple: A tuple containing the image and its corresponding label.
-    """
-    image = self.images[idx]
-    image = PIL.Image.fromarray(image)
-    label = self.labels[idx]
-    if self.transform:
-        image = self.transform(image)
-    return image, label</code></pre>
-<pre><code>Every pytorch dataset is a class inheriting from the dataset class (which you'll have to import through ```torchvision```) and needs to define the following three functions: a constructor (```__init__```), ```__len__()```, and ```__getitem__()```. The constructor records the data, ```__len__``` returns the length of the dataset, and ```__getitem__``` returns an image-label combo at an index of the set. Once we've created our dataset, there are multiple steps we would like to take to process our data. For one, we'd like to change the pixel values of our images to live in the range [-1,1] from the standard [0,255], done through the following:
-```python
-def preprocess(images_arr):
-  """Preprocess an array of images.
-
-    Args:
-        images_arr (numpy.ndarray): Array of images to be preprocessed.
-
-    Returns:
-        numpy.ndarray: Preprocessed array of images, pixel values between -1 and 1.
-  """
-  images_arr = images_arr.astype(np.float32)
-  images_arr = images_arr/255.0
-  images_arr = (images_arr * 2.0) - 1.0
-
-  return images_arr</code></pre>
+<p>This function iterates through each file and adds the images to python using PIL, then appends each image to a list called images, as well as its label (corresponding to the stated mapping) to a list called labels. At the end, a numpy array version of both these lists is returned. Using these, we can then create a pytorch dataset:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Ingredients(Dataset):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Class creating pytorch dataset from images and their labels.</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">        images (list): List of images.</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">        labels (list): List of corresponding labels.</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">        transform (callable, optional): Augmentation of the images.</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Attributes:</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">        images (list): List of images.</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">        labels (list): List of corresponding labels.</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">        transform (callable, optional): Augmentation of the images.</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Methods:</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">        __len__(self): Returns the number of samples in the dataset.</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">        __getitem__(self, idx): Retrieves the item at the given index.</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, images, labels, transform<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Initializes the Ingredients dataset.</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">        Args:</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">            images (list): List of images.</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co">            labels (list): List of corresponding labels.</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co">            transform (callable, optional): Augmentation of the images.</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.images <span class="op">=</span> images</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.labels <span class="op">=</span> labels</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.transform <span class="op">=</span> transform</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__len__</span>(<span class="va">self</span>):</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Returns the number of samples in the dataset.</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns:</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="co">            int: Number of samples in the dataset.</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.images)</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, idx):</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Retrieves the item at the given index.</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="co">        Args:</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="co">            idx (int): Index of the item to retrieve.</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns:</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="co">            tuple: A tuple containing the image and its corresponding label.</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>        image <span class="op">=</span> <span class="va">self</span>.images[idx]</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>        image <span class="op">=</span> PIL.Image.fromarray(image)</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>        label <span class="op">=</span> <span class="va">self</span>.labels[idx]</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.transform:</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>            image <span class="op">=</span> <span class="va">self</span>.transform(image)</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> image, label</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Every pytorch dataset is a class inheriting from the dataset class (which you’ll have to import through <code>torchvision</code>) and needs to define the following three functions: a constructor (<code>__init__</code>), <code>__len__()</code>, and <code>__getitem__()</code>. The constructor records the data, <code>__len__</code> returns the length of the dataset, and <code>__getitem__</code> returns an image-label combo at an index of the set. Once we’ve created our dataset, there are multiple steps we would like to take to process our data. For one, we’d like to change the pixel values of our images to live in the range [-1,1] from the standard [0,255], done through the following:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> preprocess(images_arr):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""Preprocess an array of images.</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">        images_arr (numpy.ndarray): Array of images to be preprocessed.</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">        numpy.ndarray: Preprocessed array of images, pixel values between -1 and 1.</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  images_arr <span class="op">=</span> images_arr.astype(np.float32)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  images_arr <span class="op">=</span> images_arr<span class="op">/</span><span class="fl">255.0</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  images_arr <span class="op">=</span> (images_arr <span class="op">*</span> <span class="fl">2.0</span>) <span class="op">-</span> <span class="fl">1.0</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> images_arr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In this function, we convert each image to a 32-bit float and then dilate the channels to fit within the desired interval. Additionally, we have written a function to find the mean and standard deviation across each channel:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalization_vals(images_arr):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""Calculate mean and standard deviation values for normalizing an array of images.</span></span>
@@ -1625,14 +1626,14 @@ def preprocess(images_arr):
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-41-1-image.png" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-47-1-image.png" class="img-fluid figure-img"></p>
 <figcaption>image.png</figcaption>
 </figure>
 </div>
 <p>Below the main.html sets up the structure of the mian page. we used img src to present three images and imporve the appreace of our model but most importantly we added a button called “Generate a Receipe”. The style of the button is added at style.css. The picture below depics how our home page looks like. As you can see you can navigate to the generate a recipe page both through the button in the middle or through the navigation bar. Below the image we will dive into how we formulated the generate function.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-43-1-image.png" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-49-1-image.png" class="img-fluid figure-img"></p>
 <figcaption>image.png</figcaption>
 </figure>
 </div>
@@ -1649,7 +1650,7 @@ def preprocess(images_arr):
 <p>Once the data is retived it intializes our pre-trained deep learning model (resnet18) configured for a 4-class classification problem (the classes being different ingredients). The function then loads the model weights from a specified file and prepares a series of image transformations (e.g., flipping, cropping, normalization) to apply to the uploaded images. For each uploaded image, it applies the transformations which can be seen when the in the function at the transform= transforms.Compose section.</p>
 <p>The code converts the image to a tensor, and then uses the model to predict the ingredient class.Each predicted ingredient is then added to a list. After processing all images, it redirects the user to the recipe_results route, passing along the selected cuisine and the list of predicted ingredients. In case there is an error occuring during the processing of the POST request the error handling is included to ensure it catches the exception and re-renders the generate2.html template with an error indicator.</p>
 <p>The end of the functions redirects the user to a new page (recipe_results) where recipes based on the identified ingredients and selected cuisine are shown. This is done by passing the cuisine type and the list of identified ingredients as arguments to the url_for function, which generates the appropriate URL for the redirect.</p>
-<div id="cell-46" class="cell">
+<div id="cell-52" class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">'/'</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
@@ -1733,7 +1734,7 @@ def preprocess(images_arr):
 <p>Once the user upload the images they submit their request and are immidetaly redirected to the following page. Below the name of each receipe, we also included a short list of all the key ingredients that are need to make it easier for users to select the receipe they want.</p>
 <p>This is when the gen_recipes function is used to produce a list of recipes with the most matched ingredients.</p>
 <p>The gen_recipe function generates recipe recommendations based on a specified cuisine and the list of ingredients returned by the image classification model. It first reads a recipe dataset, filtering it by cuisine if provided. When a list of ingredients is provided, it further filters the dataset based on the presence of matching ingredients. The function applies different matching thresholds depending on the length of the ingredient list. Recipes with a higher number of matching ingredients are given priority. Finally, the function returns a sorted dataframe of recommended recipes tailored to the user’s cuisine and available ingredients.</p>
-<div id="cell-51" class="cell" data-outputid="086f9f95-8aed-483e-ecfe-228825643c87">
+<div id="cell-57" class="cell" data-outputid="086f9f95-8aed-483e-ecfe-228825643c87">
 <div class="cell-output cell-output-stdout">
 <pre><code>def gen_recipe(cuisine, list_of_ingredients=None):
   '''
@@ -1791,7 +1792,7 @@ def preprocess(images_arr):
 <p>The function then calls the function gen_recipe with cuisine and ingredients as arguments. This function isreturns a collection of recommended recipes based on the provided cuisine (and potentially ingredients, if implemented).</p>
 <p>We then convert the recommended_recipes into a list of dictionaries. Each dictionary represents a recipe, and the orient=‘records’ parameter means each row in the DataFrame is converted to a dictionary, with column names as keys.</p>
 <p>Lastly we render the receipe result page.</p>
-<div id="cell-58" class="cell">
+<div id="cell-64" class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">'/filter-recipes'</span>, methods<span class="op">=</span>[<span class="st">'POST'</span>])</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filter_recipes():</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Filter recipes based on selected cuisine and ingredients.</span></span>
@@ -1816,7 +1817,7 @@ def preprocess(images_arr):
 <section id="now-that-we-are-at-the-recipe-results-page-lets-examine-the-recipe_resulst-function" class="level3">
 <h3 class="anchored" data-anchor-id="now-that-we-are-at-the-recipe-results-page-lets-examine-the-recipe_resulst-function">Now that we are at the recipe results page lets examine the recipe_resulst function:</h3>
 <p>When a user accesses the /recipe_results/ URL, the application can respond to both GET and POST requests. For GET requests, it’s expected that the user has passed information through the URL’s query parameters, specifying both a type of cuisine and ingredients they’re interested in. The application checks if both pieces of information are provided; if not, it displays a message asking for both the cuisine and ingredients. If the information is present, it uses a function gen_recipe from earlier to fetch recommended recipes matching the specified criteria, converts this data into a format that can be easily used in the HTML template, and then displays it to the user on the recipe_results.html page. For POST requests, which are not explicitly handled with form data in this code, it simply displays a message encouraging the user to select a cuisine to view recipes, suggesting that the main interaction mode expected is through GET requests</p>
-<div id="cell-60" class="cell">
+<div id="cell-66" class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">'/recipe_results/'</span>, methods<span class="op">=</span>[<span class="st">'GET'</span>, <span class="st">'POST'</span>])</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> recipe_results():</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Display recipe results based on selected cuisine and ingredients.</span></span>
@@ -1860,7 +1861,7 @@ def preprocess(images_arr):
 <p>Next up % if recipes % is a Jinja2 conditional statement that checks if there is a recipes variable available and it has a truthy value (e.g., a non-empty list). If recipes is truthy, the block of code inside this condition is executed.</p>
 <p>If the recipes variable exists and contains items than this lines % for recipe in recipes % , loop iterates over each item in recipes, note each item in the loop is referred to as recipe.</p>
 <p>Inside the loop, a div class=“recipe”&gt;…&lt;/div is defined for each recipe. Within this divsion we displays the recipe’s name and links to the recipe’s URL. The recipe.Name and recipe.URL are placeholders that get replaced with the actual name and URL of the recipe, respectively, as provided by the recipes variable. A paragraph (p) with the class “key-ingredients” that displays the key ingredients of the recipe. The recipe.key_ingredients placeholder is replaced with the actual key ingredients data. Lastly , else is executed if recipes is falsy (e.g., an empty list or None). It renders a paragraph (p) displaying a message, which is provided by the message variable. To end the if-else conditional look we use endif</p>
-<div id="cell-62" class="cell" data-outputid="d4aa560b-74a6-484d-f059-d73b6eb4222d">
+<div id="cell-68" class="cell" data-outputid="d4aa560b-74a6-484d-f059-d73b6eb4222d">
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 <figure class="figure">
